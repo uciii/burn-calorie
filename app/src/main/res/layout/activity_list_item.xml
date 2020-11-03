@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
-        android:padding="@dimen/normalPadding">
+        android:padding="@dimen/normalPadding"
+        android:layout_marginVertical="@dimen/smallPadding">
 
         <TextView
             android:id="@+id/title"
@@ -28,7 +29,7 @@
             android:id="@+id/type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primaryWhite"
+            android:textColor="@color/brownDark"
             tools:text="Indoor / Outdoor"
             android:layout_marginTop="2dp"/>
 

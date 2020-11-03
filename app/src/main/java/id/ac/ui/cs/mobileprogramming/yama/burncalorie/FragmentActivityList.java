@@ -20,7 +20,7 @@ public class FragmentActivityList extends Fragment {
     private FragmentActivityListBinding binding;
     private FragmentActivityDetail detailActivity = new FragmentActivityDetail();
 
-    private FragmentActivityList(){}
+    public FragmentActivityList(){}
 
     @Nullable
     @Override
@@ -44,9 +44,10 @@ public class FragmentActivityList extends Fragment {
         adapter.setListener((v, position) -> {
             viewModel.setSelected(adapter.getItemAt(position));
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.container, detailFragment)
+                    .replace(R.id.container, detailActivity)
                     .addToBackStack(null)
                     .commit();
         });
+        binding.pageTitle.setText("Activity List");
     }
 }
