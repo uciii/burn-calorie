@@ -26,7 +26,7 @@ import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivi
 
 public class FragmentActivityDetail extends Fragment {
     private FragmentActivityDetailBinding binding;
-    Button button;
+    Button remind, back;
 
     public FragmentActivityDetail() {
     }
@@ -42,8 +42,8 @@ public class FragmentActivityDetail extends Fragment {
                 false);
         View v = binding.getRoot();
 
-        button = v.findViewById(R.id.remind);
-        button.setOnClickListener(f -> {
+        remind = v.findViewById(R.id.remind);
+        remind.setOnClickListener(f -> {
             Intent intent = new Intent(getActivity(), ReminderBroadcast.class);
             PendingIntent pendingIntent =
                     PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
@@ -58,6 +58,11 @@ public class FragmentActivityDetail extends Fragment {
                     pendingIntent);
 
             Toast.makeText(this.getActivity(), "Reminder Set!", Toast.LENGTH_SHORT).show();
+        });
+
+        back = v.findViewById(R.id.back);
+        back.setOnClickListener(f2 ->{
+            getActivity().onBackPressed();
         });
 
         return v;
