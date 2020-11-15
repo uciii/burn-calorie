@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/backGround"
                 android:text="＜"
-                android:textColor="@color/primaryWhite"
+                android:textColor="@color/grey2"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
