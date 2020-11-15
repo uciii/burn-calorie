@@ -23,19 +23,18 @@
                 android:background="@color/backGround"
                 android:text="＜"
                 android:textColor="@color/grey2"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/pageTitle"
                 android:layout_width="362dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primaryWhite"
-                android:paddingVertical="@dimen/smallPadding"
-                android:paddingLeft="50dp"
-                android:textSize="32sp"
+                android:paddingVertical="@dimen/normalPadding"
+                android:paddingLeft="40dp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                tools:text="Activity Detail" />
+                tools:text="ACTIVITY DETAIL" />
 
         </LinearLayout>
 

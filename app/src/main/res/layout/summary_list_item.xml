@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:padding="@dimen/normalPadding"
+        android:layout_marginVertical="@dimen/smallPadding">
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/greyDark"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="[Date, time]" />
+
+            <TextView
+                android:id="@+id/activity_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/smallPadding"
+                android:textColor="@color/greyMedium"
+                android:textSize="18sp"
+                tools:text="[Date, time]" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryOrange"
+                android:textSize="12sp"
+                tools:text="Burned Calorie: N" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="10dp"
+            android:paddingHorizontal="12dp"
+            android:src="@drawable/ic_delete"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
