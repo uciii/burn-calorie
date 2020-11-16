@@ -20,7 +20,7 @@ public class SummaryData implements Serializable {
     private String activity_name;
 
     @ColumnInfo(name = "calorie")
-    private String calorie;
+    private Integer calorie;
 
     public int getID() {
         return ID;
@@ -46,11 +46,11 @@ public class SummaryData implements Serializable {
         this.activity_name = activity_name;
     }
 
-    public String getCalorie() {
+    public Integer getCalorie() {
         return calorie;
     }
 
-    public void setCalorie(String calorie) {
+    public void setCalorie(Integer calorie) {
         this.calorie = calorie;
     }
 }

@@ -23,7 +23,39 @@ public class FragmentSummaryList extends Fragment {
     RoomDB database;
     RecyclerViewAdapter2 mainAdapter;
 
+    String activity, date_time;
+    Integer calorie, second;
+
     public FragmentSummaryList() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        database = RoomDB.getInstance(getActivity());
+        dataList = database.MainDao().getAll();
+        mainAdapter = new RecyclerViewAdapter2(getActivity(), dataList);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            activity = bundle.getString("activity");
+            date_time = bundle.getString("date_time");
+            calorie = bundle.getInt("calorie");
+            second = bundle.getInt("second");
+
+            calorie = (calorie/3600) * second;
+
+            SummaryData data = new SummaryData();
+            data.setActivity_name(activity);
+            data.setCalorie(calorie);
+            data.setDate_time(date_time);
+
+            database.MainDao().insert(data);
+            dataList.clear();
+            dataList.addAll(database.MainDao().getAll());
+            mainAdapter.notifyDataSetChanged();
+        }
     }
 
     @Nullable
@@ -33,12 +65,8 @@ public class FragmentSummaryList extends Fragment {
 
         recyclerView = v.findViewById(R.id.recycler_view2);
 
-        database = RoomDB.getInstance(getActivity());
-        dataList = database.MainDao().getAll();
-
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        mainAdapter = new RecyclerViewAdapter2(getActivity(), dataList);
         recyclerView.setAdapter(mainAdapter);
 
         return v;
