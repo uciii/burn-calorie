@@ -8,6 +8,7 @@ import java.util.List;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
+@androidx.room.Dao
 public interface Dao {
     @Insert(onConflict = REPLACE)
     void insert(SummaryData summaryData);

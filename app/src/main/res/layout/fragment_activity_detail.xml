@@ -31,10 +31,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/primaryWhite"
                 android:paddingVertical="@dimen/normalPadding"
-                android:paddingLeft="40dp"
+                android:paddingLeft="45dp"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                tools:text="ACTIVITY DETAIL" />
+                android:text="ACTIVITY DETAIL" />
 
         </LinearLayout>
 

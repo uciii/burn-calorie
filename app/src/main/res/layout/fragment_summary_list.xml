@@ -24,7 +24,7 @@
                 android:textSize="28sp"
                 android:textColor="@color/primaryWhite"
                 android:textStyle="bold"
-                tools:text="SUMMARY" />
+                android:text="SUMMARY" />
 
         </LinearLayout>
 

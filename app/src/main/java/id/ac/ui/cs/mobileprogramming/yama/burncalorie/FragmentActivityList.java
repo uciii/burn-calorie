@@ -48,6 +48,5 @@ public class FragmentActivityList extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
-        binding.pageTitle.setText("Activity List");
     }
 }

@@ -38,10 +38,12 @@ public class FragmentBurning extends Fragment {
         reset = v.findViewById(R.id.reset);
 
         calc = v.findViewById(R.id.calculate);
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.container, fragmentSummaryList)
-                .addToBackStack(null)
-                .commit();
+        calc.setOnClickListener(f2 ->{
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.container, fragmentSummaryList)
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         time = v.findViewById(R.id.time);
 

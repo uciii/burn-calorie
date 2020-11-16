@@ -26,7 +26,8 @@ import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivi
 
 public class FragmentActivityDetail extends Fragment {
     private FragmentActivityDetailBinding binding;
-    Button remind, back;
+    private FragmentBurning fragmentBurning = new FragmentBurning();
+    Button remind, back, start;
 
     public FragmentActivityDetail() {
     }
@@ -60,8 +61,16 @@ public class FragmentActivityDetail extends Fragment {
             Toast.makeText(this.getActivity(), "Reminder Set!", Toast.LENGTH_SHORT).show();
         });
 
+        start = v.findViewById(R.id.start);
+        start.setOnClickListener(f3 -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.container, fragmentBurning)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
         back = v.findViewById(R.id.back);
-        back.setOnClickListener(f2 ->{
+        back.setOnClickListener(f2 -> {
             getActivity().onBackPressed();
         });
 
@@ -91,11 +100,9 @@ public class FragmentActivityDetail extends Fragment {
             String title = item.getTitle();
             String calorie = "Burn " + item.getCalorie() + " Calories / hour";
             String desc = item.getDescription();
-            String page = "Activity Detail";
             String type = item.getType();
             String url = item.getUrl();
 
-            binding.pageTitle.setText(page);
             binding.description.setText(desc);
             binding.title.setText(title);
             binding.type.setText(type);

@@ -41,8 +41,6 @@ public class FragmentSummaryList extends Fragment {
         mainAdapter = new RecyclerViewAdapter2(getActivity(), dataList);
         recyclerView.setAdapter(mainAdapter);
 
-
-
         return v;
     }
 }
