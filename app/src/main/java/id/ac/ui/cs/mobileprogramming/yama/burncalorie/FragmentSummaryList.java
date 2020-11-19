@@ -24,7 +24,7 @@ public class FragmentSummaryList extends Fragment {
     RecyclerViewAdapter2 mainAdapter;
 
     String activity, date_time;
-    Integer calorie, second;
+    long calorie, second;
 
     public FragmentSummaryList() {
     }
@@ -42,13 +42,13 @@ public class FragmentSummaryList extends Fragment {
             activity = bundle.getString("activity");
             date_time = bundle.getString("date_time");
             calorie = bundle.getInt("calorie");
-            second = bundle.getInt("second");
+            second = bundle.getLong("second");
 
             calorie = (calorie/3600) * second;
 
             SummaryData data = new SummaryData();
             data.setActivity_name(activity);
-            data.setCalorie(calorie);
+            data.setCalorie((int) calorie);
             data.setDate_time(date_time);
 
             database.MainDao().insert(data);
