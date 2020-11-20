@@ -1,10 +1,13 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +17,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivityListBinding;
 
+import static android.content.Context.MODE_PRIVATE;
 import static java.lang.Integer.parseInt;
 
 public class FragmentActivityList extends Fragment {
     private FragmentActivityListBinding binding;
     private FragmentActivityDetail detailActivity = new FragmentActivityDetail();
 
+    private Button language;
     private Resources res;
 
     public FragmentActivityList(){}
@@ -33,6 +39,24 @@ public class FragmentActivityList extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_activity_list, container,
                 false);
+
+        language = binding.getRoot().findViewById(R.id.lang);
+        loadLocale();
+
+        language.setOnClickListener(f->{
+            String temp = language.getText().toString();
+            if(temp.equals("EN")){
+                setLocale("in");
+                language.setText("ID");
+                getActivity().recreate();
+            }
+            else{
+                setLocale("en");
+                language.setText("EN");
+                getActivity().recreate();
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -57,5 +81,32 @@ public class FragmentActivityList extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getActivity().getBaseContext().getResources().updateConfiguration
+                (config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SETTING", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("lang", lang);
+        editor.apply();
+    }
+
+    private void loadLocale(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SETTING", MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang", "");
+        if(lang.equals("en")){
+            language.setText("EN");
+        }
+        else{
+            language.setText("ID");
+        }
+        setLocale(lang);
     }
 }

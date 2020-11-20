@@ -15,26 +15,29 @@
             android:orientation="horizontal"
             android:background="@color/backGround">
 
-            <Button
+            <ImageView
                 android:id="@+id/back"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:background="@color/backGround"
-                android:text="＜"
-                android:textColor="@color/grey2"
-                android:textSize="20sp"/>
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="2"
+                android:paddingHorizontal="12dp"
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:id="@+id/pageTitle"
-                android:layout_width="362dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primaryWhite"
+                android:layout_marginRight="50dp"
+                android:layout_weight="10"
+                android:layout_marginTop="@dimen/smallPadding"
                 android:paddingVertical="@dimen/normalPadding"
-                android:paddingLeft="70dp"
+                android:text="@string/burning"
+                android:textAlignment="center"
+                android:textColor="@color/primaryWhite"
                 android:textSize="28sp"
-                android:textStyle="bold"
-                android:text="BURNING" />
-
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,16 +79,18 @@
                     android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
+                    android:paddingHorizontal="@dimen/smallPadding"
                     android:background="@color/greyMedium"
                     android:textColor="@color/primaryWhite"
-                    android:text="START" />
+                    android:text="@string/start" />
 
                 <Button
                     android:id="@+id/pause"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
+                    android:paddingHorizontal="@dimen/smallPadding"
                     android:background="@color/grey2"
-                    android:text="PAUSE"
+                    android:text="@string/pause"
                     android:textColor="@color/primaryWhite"
                     android:layout_marginLeft="@dimen/smallPadding"/>
 
@@ -93,19 +98,21 @@
                     android:id="@+id/reset"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
+                    android:paddingHorizontal="@dimen/smallPadding"
                     android:background="@color/primaryOrange"
-                    android:text="RESET"
+                    android:text="@string/reset"
                     android:textColor="@color/primaryWhite"
                     android:layout_marginLeft="@dimen/smallPadding" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/calculate"
-                android:layout_width="102dp"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="@dimen/smallPadding"
                 android:layout_height="37dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/backGround"
-                android:text="CALCULATE"
+                android:text="@string/calculate"
                 android:textColor="@color/primaryWhite" />
 
         </LinearLayout>

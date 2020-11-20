@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ public class FragmentBurning extends Fragment {
     TimerTask timerTask;
 
     //view
-    Button back, start, pause, reset, calc;
+    Button start, pause, reset, calc;
+    ImageView back;
     TextView title, time;
     View v;
 

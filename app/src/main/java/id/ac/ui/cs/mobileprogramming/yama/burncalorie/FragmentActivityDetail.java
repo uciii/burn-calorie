@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivityDetailBinding;
@@ -27,7 +28,8 @@ import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivi
 public class FragmentActivityDetail extends Fragment {
     private FragmentActivityDetailBinding binding;
     private FragmentBurning fragmentBurning = new FragmentBurning();
-    Button remind, back, start;
+    Button remind, start;
+    ImageView back;
 
     private Resources res;
 

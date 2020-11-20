@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Burn Calorie</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua…</string>
+    <string name="lorem_ipsum2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="start_burning">MULAI MEMBAKAR</string>
+    <string name="remind">Ingatkan Saya dalam 10 menit</string>
+
+    <string name="reminderToast">Set Pengingat!</string>
+    <string name="burn">Membakar</string>
+    <string name="cal_hour">Kalori / jam</string>
+
+    <string-array name="act1">
+        <item>Joging</item>
+        <item>Lari laun atau joging adalah bentuk berlari dengan langkah perlahan atau santai.
+            Tujuan utamanya adalah untuk meningkatkan kebugaran fisik dengan tekanan yang lebih
+            sedikit pada tubuh daripada berlari lebih cepat, tetapi lebih dari berjalan, atau untuk
+            mempertahankan kecepatan tetap untuk jangka waktu yang lebih lama. Ini dilakukan dalam
+            jarak jauh dan merupakan bentuk latihan ketahanan aerobik.</item>
+        <item>Luar Ruangan</item>
+        <item>https://id.wikipedia.org/wiki/Lari_laun</item>
+        <item>900</item>
+    </string-array>
+    <string-array name="act2">
+        <item>Bersepeda</item>
+        <item>Bersepeda adalah sebuah kegiatan rekreasi atau olahraga, serta merupakan salah
+            satu moda transportasi darat yang menggunakan sepeda. Sepeda pertama kali diperkenalkan
+            pada abad ke-19 Masehi. Banyak penggemar bersepeda yang melakukan kegiatan tersebut
+            di berbagai macam medan, misalnya perbukitan, medan yang terjal maupun hanya sekadar
+            dipedesaan dan perkotaan saja. </item>
+        <item>Luar Ruangan</item>
+        <item>https://id.wikipedia.org/wiki/Bersepeda</item>
+        <item>750</item>
+    </string-array>
+    <string-array name="act3">
+        <item>Menyapu Lantai</item>
+        <item>Cara membersihkan lantai yang efektif dimulai dari kegiatan menyapu. Jika menyapu
+            rumah tidak dilakukan dengan cara yang benar, maka akan mengganggu kegiatan
+            membersihkan rumah secara keseluruhan, misalnya mengepel lantai dan membersihkan
+            noda di lantai. Simak tips cara menyapu lantai yang benar, lengkap juga dengan tips
+            memilih dan menyimpan sapu untuk menunjang kegiatan menyapu lantai yang efisien.</item>
+        <item>Dalam Ruangan</item>
+        <item>https://www.cleanipedia.com/id/
+            membersihkan-lantai-permukaan/cara-menyapu-lantai-rumah.html</item>
+        <item>240</item>
+    </string-array>
+
+    <string name="warning">Anda memiiki aktivitas yang sedang berjalan !!!</string>
+    <string name="notifTitle">Pengingat Burn Calorie</string>
+    <string name="notifText">Ayo mulai membakar kalori !!!</string>
+    <string name="activity_list">LIST AKTIVITAS</string>
+    <string name="activity_detail">DETAIL AKTIVITAS</string>
+    <string name="start">MULAI</string>
+    <string name="pause">STOP</string>
+    <string name="reset">ULANGI</string>
+    <string name="calculate">HITUNG</string>
+    <string name="burning">MEMBAKAR</string>
+    <string name="summary">RINGKASAN</string>
+
+</resources>

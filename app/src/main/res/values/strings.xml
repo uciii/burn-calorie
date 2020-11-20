@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Burn Calorie</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -45,9 +46,16 @@
         <item>240</item>
     </string-array>
 
-    <string name="warning">There are another Activity Running!!!</string>
-
+    <string name="warning">There are another activity running !!!</string>
     <string name="notifTitle">Burn Calorie Reminder</string>
-    <string name="notifText">Lets burn out some calories!!!</string>
+    <string name="notifText">Lets burn out some calories !!!</string>
+    <string name="activity_list">ACTIVITY LIST</string>
+    <string name="activity_detail">ACTIVITY DETAIL</string>
+    <string name="start">START</string>
+    <string name="pause">PAUSE</string>
+    <string name="reset">RESET</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="burning">BURNING</string>
+    <string name="summary">SUMMARY</string>
 
 </resources>
