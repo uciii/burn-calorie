@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class FragmentSummaryList extends Fragment {
     RecyclerView recyclerView;
+    private FragmentActivityList activityList = new FragmentActivityList();
 
     List<SummaryData> dataList = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
@@ -25,6 +27,8 @@ public class FragmentSummaryList extends Fragment {
 
     String activity, date_time;
     long calorie, second;
+
+    ImageView home, share;
 
     public FragmentSummaryList() {
     }
@@ -67,6 +71,14 @@ public class FragmentSummaryList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_summary_list, container, false);
 
+        home = v.findViewById(R.id.home);
+        home.setOnClickListener(f->{
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.container, activityList)
+                    .addToBackStack(null)
+                    .commit();
+        });
+        share = v.findViewById(R.id.share);
         recyclerView = v.findViewById(R.id.recycler_view2);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
