@@ -1,10 +1,10 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +44,11 @@ public class FragmentSummaryList extends Fragment {
             calorie = bundle.getInt("calorie");
             second = bundle.getLong("second");
 
-            calorie = (calorie/3600) * second;
+            Log.d("TAG", "cal "+calorie);
+            Log.d("TAG", "onCreate: "+second);
+            calorie = (calorie * second)/3600;
+
+            Log.d("TAG", "cal2 "+calorie);
 
             SummaryData data = new SummaryData();
             data.setActivity_name(activity);

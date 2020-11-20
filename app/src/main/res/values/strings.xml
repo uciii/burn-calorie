@@ -10,4 +10,44 @@
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="start_burning">START BURNING</string>
     <string name="remind">Remind Me in 10 min</string>
+
+    <string name="reminderToast">Reminder Set!</string>
+    <string name="burn">Burn </string>
+    <string name="cal_hour"> Calories / hour</string>
+
+    <string-array name="act1">
+        <item>Jogging</item>
+        <item>Jogging is a form of trotting or running at a slow or leisurely pace. The main
+            intention is to increase physical fitness with less stress on the body than from
+            faster running but more than walking, or to maintain a steady speed for longer periods
+            of time. Performed over long distances, it is a form of aerobic endurance training. </item>
+        <item>Outdoor</item>
+        <item>https://en.wikipedia.org/wiki/Jogging</item>
+        <item>900</item>
+    </string-array>
+    <string-array name="act2">
+        <item>Cycling</item>
+        <item>Cycling, also called bicycling or biking, is the use of bicycles for transport,
+            recreation, exercise or sport. People engaged in cycling are referred to as
+            "cyclists", "bicyclists", or "bikers". Apart from two-wheeled bicycles, "cycling"
+            also includes the riding of unicycles, tricycles, quadricycles, recumbent and similar
+            human-powered vehicles (HPVs).</item>
+        <item>Outdoor</item>
+        <item>https://en.wikipedia.org/wiki/Cycling</item>
+        <item>750</item>
+    </string-array>
+    <string-array name="act3">
+        <item>Sweeping floors</item>
+        <item>Sweeping floors keeps them free of unsightly and unhygienic dust and debris,
+            and is often the first step in more extensive cleaning projects.</item>
+        <item>Indoor</item>
+        <item>https://www.wikihow.com/Sweep-a-Floor</item>
+        <item>240</item>
+    </string-array>
+
+    <string name="warning">There are another Activity Running!!!</string>
+
+    <string name="notifTitle">Burn Calorie Reminder</string>
+    <string name="notifText">Lets burn out some calories!!!</string>
+
 </resources>

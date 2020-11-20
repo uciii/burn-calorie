@@ -1,12 +1,12 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -29,6 +29,8 @@ public class FragmentActivityDetail extends Fragment {
     private FragmentBurning fragmentBurning = new FragmentBurning();
     Button remind, back, start;
 
+    private Resources res;
+
     public FragmentActivityDetail() {
     }
 
@@ -36,6 +38,7 @@ public class FragmentActivityDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         createNotifyChannel();
+        res = getResources();
         binding = DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_activity_detail,
@@ -58,7 +61,7 @@ public class FragmentActivityDetail extends Fragment {
                     buttonClicked + oneMinuteInMillis,
                     pendingIntent);
 
-            Toast.makeText(this.getActivity(), "Reminder Set!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity(), res.getString(R.string.reminderToast), Toast.LENGTH_SHORT).show();
         });
 
         start = v.findViewById(R.id.start);
@@ -98,7 +101,8 @@ public class FragmentActivityDetail extends Fragment {
         SharedViewModel viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         viewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             String title = item.getTitle();
-            String calorie = "Burn " + item.getCalorie() + " Calories / hour";
+            String calorie = res.getString(R.string.burn)
+                    +" "+ item.getCalorie() +" "+ res.getString((R.string.cal_hour));
             String desc = item.getDescription();
             String type = item.getType();
             String url = item.getUrl();

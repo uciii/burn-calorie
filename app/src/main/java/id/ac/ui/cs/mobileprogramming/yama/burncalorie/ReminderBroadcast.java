@@ -14,8 +14,8 @@ public class ReminderBroadcast extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyWorkOut")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Burn Calorie Reminder")
-                .setContentText("Lets burn out some calories!!!")
+                .setContentTitle(context.getResources().getString(R.string.notifTitle))
+                .setContentText(context.getResources().getString(R.string.notifText))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);

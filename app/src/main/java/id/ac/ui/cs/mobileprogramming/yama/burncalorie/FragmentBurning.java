@@ -124,19 +124,24 @@ public class FragmentBurning extends Fragment {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(ISEXPIRED, true);
-            boolean x = editor.commit();
+            editor.putBoolean(ISSTOP, true);
+            editor.putLong(PAUSETIME, 0);
+            editor.putLong(SUTIME, 0);
 
             Bundle bundle = new Bundle();
             bundle.putString("activity", activity.getTitle());
             bundle.putString("date_time", formatter.format(date));
             bundle.putInt("calorie", activity.getCalorie());
-            bundle.putLong("second", (long) currTime);
+            bundle.putLong("second", second + (Math.round(currTime) % 86400));
             fragmentSummaryList.setArguments(bundle);
+
 
             if(timerTask != null) timerTask.cancel();
             isStop = true;
             second = 0;
             currTime = 0.0;
+
+            boolean x = editor.commit();
 
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.container, fragmentSummaryList)
@@ -198,7 +203,6 @@ public class FragmentBurning extends Fragment {
 
         isStop = sharedPreferences.getBoolean(ISSTOP, true);
 
-        Log.d("TAG", String.valueOf(sharedPreferences.getBoolean(ISEXPIRED, true)));
         if(sharedPreferences.getBoolean(ISEXPIRED, true)){
             SharedViewModel viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
             viewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
@@ -208,7 +212,7 @@ public class FragmentBurning extends Fragment {
         }
         else {
             title.setText(activity.getTitle());
-            Toast.makeText(this.getActivity(), "There are another Activity Running!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity(), getResources().getString(R.string.warning), Toast.LENGTH_SHORT).show();
             updateView();
         }
 
