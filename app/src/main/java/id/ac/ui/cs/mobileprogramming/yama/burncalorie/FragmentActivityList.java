@@ -100,7 +100,7 @@ public class FragmentActivityList extends Fragment {
 
     private void loadLocale(){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SETTING", MODE_PRIVATE);
-        String lang = sharedPreferences.getString("lang", "");
+        String lang = sharedPreferences.getString("lang", "en");
         if(lang.equals("en")){
             language.setText("EN");
         }

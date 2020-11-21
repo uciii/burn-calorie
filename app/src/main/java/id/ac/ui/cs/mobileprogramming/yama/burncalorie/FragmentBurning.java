@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +73,8 @@ public class FragmentBurning extends Fragment {
         back.setOnClickListener(f2 ->{
             if(timerTask != null) timerTask.cancel();
             updateSharedPreference();
+            second = 0;
+            currTime = 0.0;
             getActivity().onBackPressed();
         });
 
@@ -80,6 +83,7 @@ public class FragmentBurning extends Fragment {
             updateSharedPreference();
             if(isStop) {
                 //start
+                getActivity().startService(new Intent(getActivity(), MusicService.class));
                 if (second == -1 && currTime < 0) {
                     isStop = false;
                     second = 0;
@@ -100,16 +104,17 @@ public class FragmentBurning extends Fragment {
                 isStop = true;
                 timerTask.cancel();
                 updateSharedPreference();
+                getActivity().stopService(new Intent(getActivity(), MusicService.class));
             }
         });
 
         reset = v.findViewById(R.id.reset);
         reset.setOnClickListener(f5 ->{
             if(timerTask != null) timerTask.cancel();
-
             isStop = true;
             currTime = 0.0;
             second = 0;
+            getActivity().stopService(new Intent(getActivity(), MusicService.class));
             updateSharedPreference();
             setTextTime(0,0,0);
         });
@@ -138,6 +143,7 @@ public class FragmentBurning extends Fragment {
             fragmentSummaryList.setArguments(bundle);
 
 
+            getActivity().stopService(new Intent(getActivity(), MusicService.class));
             if(timerTask != null) timerTask.cancel();
             isStop = true;
             second = 0;
