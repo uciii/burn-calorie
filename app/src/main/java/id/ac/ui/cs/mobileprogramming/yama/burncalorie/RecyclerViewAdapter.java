@@ -16,7 +16,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Activity> list;
     private OnItemClickListener listener;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ActivityListItemBinding binding;
 
         public ViewHolder(@NonNull ActivityListItemBinding binding) {

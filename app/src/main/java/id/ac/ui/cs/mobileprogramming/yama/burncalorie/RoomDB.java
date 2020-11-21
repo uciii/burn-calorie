@@ -7,14 +7,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {SummaryData.class}, version = 1, exportSchema = false)
-public abstract class RoomDB extends RoomDatabase{
+public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static String DATABASE_NAME = "burn_calorie";
 
-    public synchronized static RoomDB getInstance(Context context){
-        if (database == null){
-            database = Room.databaseBuilder(context.getApplicationContext()
-                    , RoomDB.class, DATABASE_NAME)
+    public synchronized static RoomDB getInstance(Context context) {
+        if (database == null) {
+            database = Room.databaseBuilder(context.getApplicationContext(),
+                    RoomDB.class, DATABASE_NAME)
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();

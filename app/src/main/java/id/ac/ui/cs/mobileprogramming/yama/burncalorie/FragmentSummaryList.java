@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +25,15 @@ import java.util.List;
 
 public class FragmentSummaryList extends Fragment {
     RecyclerView recyclerView;
-    private FragmentActivityList activityList = new FragmentActivityList();
-
-    List<SummaryData> dataList = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
-    RoomDB database;
     RecyclerViewAdapter2 mainAdapter;
 
     String activity, date_time;
     long calorie, second;
+    private FragmentActivityList activityList = new FragmentActivityList();
+
+    List<SummaryData> dataList = new ArrayList<>();
+    RoomDB database;
 
     ImageView home, share;
 
@@ -44,7 +43,6 @@ public class FragmentSummaryList extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         database = RoomDB.getInstance(getActivity());
         dataList = database.MainDao().getAll();
         mainAdapter = new RecyclerViewAdapter2(getActivity(), dataList);
@@ -56,7 +54,7 @@ public class FragmentSummaryList extends Fragment {
             calorie = bundle.getInt("calorie");
             second = bundle.getLong("second");
 
-            calorie = (calorie * second)/3600;
+            calorie = (calorie * second) / 3600;
 
             SummaryData data = new SummaryData();
             data.setActivity_name(activity);
@@ -76,16 +74,18 @@ public class FragmentSummaryList extends Fragment {
         View v = inflater.inflate(R.layout.fragment_summary_list, container, false);
 
         home = v.findViewById(R.id.home);
-        home.setOnClickListener(f->{
+        home.setOnClickListener(f -> {
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.container, activityList)
                     .addToBackStack(null)
                     .commit();
         });
+
         share = v.findViewById(R.id.share);
-        share.setOnClickListener(f2->{
+        share.setOnClickListener(f2 -> {
             shareButton();
         });
+
         recyclerView = v.findViewById(R.id.recycler_view2);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -104,6 +104,7 @@ public class FragmentSummaryList extends Fragment {
         String filePath = Environment.getExternalStorageDirectory() + "/Download/" +
                 Calendar.getInstance().getTime().toString() + ".jpg";
         File fileScreenshot = new File(filePath);
+
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(fileScreenshot);
@@ -123,6 +124,7 @@ public class FragmentSummaryList extends Fragment {
 
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
+
         shareIntent.putExtra(Intent.EXTRA_TEXT, "My Current Activity");
         shareIntent.putExtra(Intent.EXTRA_STREAM, path);
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

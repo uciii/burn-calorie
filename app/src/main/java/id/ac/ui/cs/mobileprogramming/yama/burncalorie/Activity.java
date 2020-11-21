@@ -8,15 +8,15 @@ public class Activity {
     String url;
     Integer calorie;
 
-    public Activity(String title, String description, String type, String url, Integer calorie){
+    public Activity(String title, String description, String type, String url, Integer calorie) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.url = url;
         this.calorie = calorie;
 
-        if(description.length()<150) this.info = description + "...";
-        else this.info = description.substring(0,150) + "...";
+        if (description.length() < 150) this.info = description + "...";
+        else this.info = description.substring(0, 150) + "...";
     }
 
     public String getTitle() {

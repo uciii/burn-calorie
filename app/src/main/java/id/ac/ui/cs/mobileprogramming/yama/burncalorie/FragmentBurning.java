@@ -3,7 +3,6 @@ package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,13 +33,11 @@ public class FragmentBurning extends Fragment {
     Timer timer;
     TimerTask timerTask;
 
-    //view
     Button start, pause, reset, calc;
     ImageView back;
     TextView title, time;
     View v;
 
-    //for shared preference
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String ACTIVITY = "activity";
     public static final String PAUSETIME = "pausetime";
@@ -70,8 +67,8 @@ public class FragmentBurning extends Fragment {
         fragmentSummaryList = new FragmentSummaryList();
 
         back = v.findViewById(R.id.back);
-        back.setOnClickListener(f2 ->{
-            if(timerTask != null) timerTask.cancel();
+        back.setOnClickListener(f2 -> {
+            if (timerTask != null) timerTask.cancel();
             updateSharedPreference();
             second = 0;
             currTime = 0.0;
@@ -79,9 +76,9 @@ public class FragmentBurning extends Fragment {
         });
 
         start = v.findViewById(R.id.start);
-        start.setOnClickListener(f3 ->{
+        start.setOnClickListener(f3 -> {
             updateSharedPreference();
-            if(isStop) {
+            if (isStop) {
                 //start
                 getActivity().startService(new Intent(getActivity(), MusicService.class));
                 if (second == -1 && currTime < 0) {
@@ -99,8 +96,8 @@ public class FragmentBurning extends Fragment {
         });
 
         pause = v.findViewById(R.id.pause);
-        pause.setOnClickListener(f4 ->{
-            if(!isStop) {
+        pause.setOnClickListener(f4 -> {
+            if (!isStop) {
                 isStop = true;
                 timerTask.cancel();
                 updateSharedPreference();
@@ -109,27 +106,28 @@ public class FragmentBurning extends Fragment {
         });
 
         reset = v.findViewById(R.id.reset);
-        reset.setOnClickListener(f5 ->{
-            if(timerTask != null) timerTask.cancel();
+        reset.setOnClickListener(f5 -> {
+            if (timerTask != null) timerTask.cancel();
             isStop = true;
             currTime = 0.0;
             second = 0;
             getActivity().stopService(new Intent(getActivity(), MusicService.class));
             updateSharedPreference();
-            setTextTime(0,0,0);
+            setTextTime(0, 0, 0);
         });
 
         calc = v.findViewById(R.id.calculate);
-        calc.setOnClickListener(f6 ->{
+        calc.setOnClickListener(f6 -> {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
 
-            if(currTime < 0) {
+            if (currTime < 0) {
                 currTime = 0;
             }
 
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
+
             editor.putBoolean(ISEXPIRED, true);
             editor.putBoolean(ISSTOP, true);
             editor.putLong(PAUSETIME, 0);
@@ -142,9 +140,8 @@ public class FragmentBurning extends Fragment {
             bundle.putLong("second", second + (Math.round(currTime) % 86400));
             fragmentSummaryList.setArguments(bundle);
 
-
             getActivity().stopService(new Intent(getActivity(), MusicService.class));
-            if(timerTask != null) timerTask.cancel();
+            if (timerTask != null) timerTask.cancel();
             isStop = true;
             second = 0;
             currTime = 0.0;
@@ -165,8 +162,7 @@ public class FragmentBurning extends Fragment {
         loadData();
     }
 
-    private void startTimer()
-    {
+    private void startTimer() {
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -180,20 +176,21 @@ public class FragmentBurning extends Fragment {
                 updateSharedPreference();
             }
         };
-        timer.scheduleAtFixedRate(timerTask, 0 ,1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
     }
 
     private void updateView() {
-        if(!isStop || second > 0){
-            long sec = second + (Math.round(currTime) % 86400);;
-            long hour = sec / 3600;  sec %= 3600;
-            long min = sec / 60; sec %= 60;
+        if (!isStop || second > 0) {
+            long sec = second + (Math.round(currTime) % 86400);
+            long hour = sec / 3600;
+            sec %= 3600;
+            long min = sec / 60;
+            sec %= 60;
             setTextTime(hour, min, sec);
-        }
-        else setTextTime(0,0,0);
+        } else setTextTime(0, 0, 0);
     }
 
-    private void setTextTime(long hour, long min, long sec){
+    private void setTextTime(long hour, long min, long sec) {
         String S = String.format("%02d : %02d : %02d", hour, min, sec);
         time.setText(S);
     }
@@ -206,40 +203,46 @@ public class FragmentBurning extends Fragment {
         activity = gson.fromJson(json, Activity.class);
 
         long pauseTime = sharedPreferences.getLong(PAUSETIME, -1);
-        if(pauseTime <= 0) second = sharedPreferences.getLong(SUTIME, -1);
-        else second = sharedPreferences.getLong(SUTIME, -1) + (System.currentTimeMillis() - pauseTime)/1000;
+
+        if (pauseTime <= 0) second = sharedPreferences.getLong(SUTIME, -1);
+        else
+            second = sharedPreferences.getLong(SUTIME, -1) +
+                    (System.currentTimeMillis() - pauseTime) / 1000;
 
         isStop = sharedPreferences.getBoolean(ISSTOP, true);
 
-        if(sharedPreferences.getBoolean(ISEXPIRED, true)){
+        if (sharedPreferences.getBoolean(ISEXPIRED, true)) {
             SharedViewModel viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
             viewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
                 activity = item;
                 title.setText(activity.getTitle());
             });
-        }
-        else {
+        } else {
             title.setText(activity.getTitle());
             Toast.makeText(this.getActivity(), getResources().getString(R.string.warning), Toast.LENGTH_SHORT).show();
             updateView();
         }
 
-        if(!isStop) startTimer();
+        if (!isStop) startTimer();
         else updateView();
     }
 
-    private void updateSharedPreference(){
+    private void updateSharedPreference() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Gson gson = new Gson();
         String json = gson.toJson(activity);
         editor.putString(ACTIVITY, json);
+
         if (second + (Math.round(currTime) % 86400) < 0) editor.putLong(SUTIME, 0);
         else editor.putLong(SUTIME, second + (Math.round(currTime) % 86400));
+
         editor.putBoolean(ISSTOP, isStop);
-        if(isStop) editor.putLong(PAUSETIME, 0);
+
+        if (isStop) editor.putLong(PAUSETIME, 0);
         else editor.putLong(PAUSETIME, System.currentTimeMillis());
+
         editor.putBoolean(ISEXPIRED, false);
         editor.apply();
     }

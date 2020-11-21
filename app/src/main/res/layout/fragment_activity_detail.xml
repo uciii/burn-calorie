@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
@@ -32,9 +31,9 @@
                 android:id="@+id/pageTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallPadding"
                 android:layout_marginRight="50dp"
                 android:layout_weight="10"
-                android:layout_marginTop="@dimen/smallPadding"
                 android:paddingVertical="@dimen/normalPadding"
                 android:text="@string/activity_detail"
                 android:textAlignment="center"
@@ -123,4 +122,5 @@
             android:textColor="@color/primaryWhite" />
 
     </LinearLayout>
+
 </layout>

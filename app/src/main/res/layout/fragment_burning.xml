@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primaryWhite"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@color/primaryWhite">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/backGround">
+            android:background="@color/backGround"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/back"
@@ -29,92 +28,95 @@
                 android:id="@+id/pageTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallPadding"
                 android:layout_marginRight="50dp"
                 android:layout_weight="10"
-                android:layout_marginTop="@dimen/smallPadding"
                 android:paddingVertical="@dimen/normalPadding"
                 android:text="@string/burning"
                 android:textAlignment="center"
                 android:textColor="@color/primaryWhite"
                 android:textSize="28sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="@dimen/normalMargin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:padding="@dimen/smallPadding"
-            android:paddingBottom="@dimen/normalPadding"
-
-            android:gravity="center_horizontal">
+            android:paddingBottom="@dimen/normalPadding">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Activity"
                 android:textColor="@color/greyDark"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:text="Activity" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:text="00:00:00"
                 android:textColor="@color/greyMedium"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:text="00:00:00" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/normalPadding">
+                android:layout_marginTop="@dimen/normalPadding"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/start"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
-                    android:paddingHorizontal="@dimen/smallPadding"
                     android:background="@color/greyMedium"
-                    android:textColor="@color/primaryWhite"
-                    android:text="@string/start" />
+                    android:paddingHorizontal="@dimen/smallPadding"
+                    android:text="@string/start"
+                    android:textColor="@color/primaryWhite" />
 
                 <Button
                     android:id="@+id/pause"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
-                    android:paddingHorizontal="@dimen/smallPadding"
+                    android:layout_marginLeft="@dimen/smallPadding"
                     android:background="@color/grey2"
+                    android:paddingHorizontal="@dimen/smallPadding"
                     android:text="@string/pause"
-                    android:textColor="@color/primaryWhite"
-                    android:layout_marginLeft="@dimen/smallPadding"/>
+                    android:textColor="@color/primaryWhite" />
 
                 <Button
                     android:id="@+id/reset"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
-                    android:paddingHorizontal="@dimen/smallPadding"
+                    android:layout_marginLeft="@dimen/smallPadding"
                     android:background="@color/primaryOrange"
+                    android:paddingHorizontal="@dimen/smallPadding"
                     android:text="@string/reset"
-                    android:textColor="@color/primaryWhite"
-                    android:layout_marginLeft="@dimen/smallPadding" />
+                    android:textColor="@color/primaryWhite" />
+
             </LinearLayout>
 
             <Button
                 android:id="@+id/calculate"
                 android:layout_width="wrap_content"
-                android:paddingHorizontal="@dimen/smallPadding"
                 android:layout_height="37dp"
                 android:layout_marginTop="25dp"
                 android:background="@color/backGround"
+                android:paddingHorizontal="@dimen/smallPadding"
                 android:text="@string/calculate"
                 android:textColor="@color/primaryWhite" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </layout>

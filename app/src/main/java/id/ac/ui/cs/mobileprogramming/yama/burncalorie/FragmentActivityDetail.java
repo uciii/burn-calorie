@@ -28,6 +28,7 @@ import id.ac.ui.cs.mobileprogramming.yama.burncalorie.databinding.FragmentActivi
 public class FragmentActivityDetail extends Fragment {
     private FragmentActivityDetailBinding binding;
     private FragmentBurning fragmentBurning = new FragmentBurning();
+
     Button remind, start;
     ImageView back;
 
@@ -41,11 +42,9 @@ public class FragmentActivityDetail extends Fragment {
                              Bundle savedInstanceState) {
         createNotifyChannel();
         res = getResources();
+
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_activity_detail,
-                container,
-                false);
+                inflater, R.layout.fragment_activity_detail, container, false);
         View v = binding.getRoot();
 
         remind = v.findViewById(R.id.remind);
@@ -82,8 +81,8 @@ public class FragmentActivityDetail extends Fragment {
         return v;
     }
 
-    private void createNotifyChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+    private void createNotifyChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "BurnCalorieReminderChannel";
             String description = "Channel for Burn Out Reminder";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -104,7 +103,7 @@ public class FragmentActivityDetail extends Fragment {
         viewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             String title = item.getTitle();
             String calorie = res.getString(R.string.burn)
-                    +" "+ item.getCalorie() +" "+ res.getString((R.string.cal_hour));
+                    + " " + item.getCalorie() + " " + res.getString((R.string.cal_hour));
             String desc = item.getDescription();
             String type = item.getType();
             String url = item.getUrl();

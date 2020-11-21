@@ -21,7 +21,6 @@ public class MusicService extends Service {
         player = MediaPlayer.create(this, R.raw.bensound);
 
         player.setLooping(true);
-
         player.start();
 
         return START_STICKY;

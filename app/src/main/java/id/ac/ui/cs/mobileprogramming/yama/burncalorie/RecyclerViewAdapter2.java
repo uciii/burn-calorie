@@ -17,7 +17,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     private Context context;
     private RoomDB db;
 
-    public RecyclerViewAdapter2(Context context, List<SummaryData> summaryData){
+    public RecyclerViewAdapter2(Context context, List<SummaryData> summaryData) {
         this.context = context;
         this.summaryData = summaryData;
         notifyDataSetChanged();
@@ -47,13 +47,12 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
                 db.MainDao().delete(d);
 
-                int pos= holder.getAdapterPosition();
+                int pos = holder.getAdapterPosition();
                 summaryData.remove(pos);
                 notifyItemRemoved(pos);
                 notifyItemRangeChanged(pos, summaryData.size());
             }
         });
-
 
 
     }
