@@ -131,7 +131,6 @@ public class FragmentSummaryList extends Fragment {
     }
 
     private class insertDataAsyncTask extends AsyncTask<SummaryData, Void, Void> {
-
         @Override
         protected Void doInBackground(SummaryData... summaryData) {
             database.MainDao().insert(summaryData[0]);
