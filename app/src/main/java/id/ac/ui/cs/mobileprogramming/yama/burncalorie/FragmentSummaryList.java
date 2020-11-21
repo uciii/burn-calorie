@@ -3,6 +3,7 @@ package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -61,10 +62,7 @@ public class FragmentSummaryList extends Fragment {
             data.setCalorie((int) calorie);
             data.setDate_time(date_time);
 
-            database.MainDao().insert(data);
-            dataList.clear();
-            dataList.addAll(database.MainDao().getAll());
-            mainAdapter.notifyDataSetChanged();
+            new insertDataAsyncTask().execute(data);
         }
     }
 
@@ -131,4 +129,17 @@ public class FragmentSummaryList extends Fragment {
         shareIntent.setType("image/*");
         startActivity(Intent.createChooser(shareIntent, "Share..."));
     }
+
+    private class insertDataAsyncTask extends AsyncTask<SummaryData, Void, Void> {
+
+        @Override
+        protected Void doInBackground(SummaryData... summaryData) {
+            database.MainDao().insert(summaryData[0]);
+            dataList.clear();
+            dataList.addAll(database.MainDao().getAll());
+            mainAdapter.notifyDataSetChanged();
+            return null;
+        }
+    }
+
 }

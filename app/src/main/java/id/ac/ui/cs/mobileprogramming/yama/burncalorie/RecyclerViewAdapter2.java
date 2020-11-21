@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
             public void onClick(View v) {
                 SummaryData d = summaryData.get(holder.getAdapterPosition());
 
-                db.MainDao().delete(d);
+                new deleteDataAsyncTask().execute(d);
 
                 int pos = holder.getAdapterPosition();
                 summaryData.remove(pos);
@@ -73,6 +74,14 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
             activity = itemView.findViewById(R.id.activity_name);
             calorie = itemView.findViewById(R.id.calorie);
             btDel = itemView.findViewById(R.id.delete);
+        }
+    }
+
+    private class deleteDataAsyncTask extends AsyncTask<SummaryData, Void, Void> {
+        @Override
+        protected Void doInBackground(SummaryData... summaryData) {
+            db.MainDao().delete(summaryData[0]);
+            return null;
         }
     }
 }
