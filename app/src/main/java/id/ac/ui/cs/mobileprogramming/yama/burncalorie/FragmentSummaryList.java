@@ -56,11 +56,7 @@ public class FragmentSummaryList extends Fragment {
             calorie = bundle.getInt("calorie");
             second = bundle.getLong("second");
 
-            Log.d("TAG", "cal "+calorie);
-            Log.d("TAG", "onCreate: "+second);
             calorie = (calorie * second)/3600;
-
-            Log.d("TAG", "cal2 "+calorie);
 
             SummaryData data = new SummaryData();
             data.setActivity_name(activity);

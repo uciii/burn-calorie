@@ -38,7 +38,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         holder.date_time.setText(data.getDate_time());
         holder.activity.setText(data.getActivity_name());
-        holder.calorie.setText(String.valueOf(data.getCalorie()));
+        holder.calorie.setText(String.valueOf(data.getCalorie()) + " Calorie");
 
         holder.btDel.setOnClickListener(new View.OnClickListener() {
             @Override
