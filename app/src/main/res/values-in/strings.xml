@@ -62,5 +62,8 @@
     <string name="calculate">HITUNG</string>
     <string name="burning">MEMBAKAR</string>
     <string name="summary">RINGKASAN</string>
+    <string name="permission">Izin dibutuhkan</string>
+    <string name="permissionDetail">Izin ini dibutuhkan karena aplikasi ini perlu menyimpan gambar layat di dalam
+        folder /Download dan mengambilnya untuk bisa dibagikan</string>
 
 </resources>

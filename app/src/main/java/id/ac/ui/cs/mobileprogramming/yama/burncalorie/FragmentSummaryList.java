@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -115,13 +116,14 @@ public class FragmentSummaryList extends Fragment {
     }
 
     private void requestStoragePermission() {
+        Resources res = getResources();
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) ||
                 ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(getActivity())
-                    .setTitle("Permission needed")
-                    .setMessage("This permission is needed because this app need to store your screen capture to /Download folder and read your screen captured image to share it")
+                    .setTitle(res.getString(R.string.permission))
+                    .setMessage(res.getString(R.string.permissionDetail))
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
