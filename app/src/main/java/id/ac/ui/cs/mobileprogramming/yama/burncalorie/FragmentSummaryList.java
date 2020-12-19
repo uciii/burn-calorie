@@ -62,8 +62,8 @@ public class FragmentSummaryList extends Fragment {
             calorie = bundle.getInt("calorie");
             second = bundle.getLong("second");
 
-            calorie = (calorie * second) / 3600;
-
+            calorie = calcCalorie(calorie, second);
+            
             SummaryData data = new SummaryData();
             data.setActivity_name(activity);
             data.setCalorie((int) calorie);
@@ -73,6 +73,13 @@ public class FragmentSummaryList extends Fragment {
             mainAdapter.notifyDataSetChanged();
         }
     }
+
+    public native long calcCalorie(long calorie, long second);
+
+    static {
+        System.loadLibrary("calorie-calculator");
+    }
+
 
     @Nullable
     @Override
