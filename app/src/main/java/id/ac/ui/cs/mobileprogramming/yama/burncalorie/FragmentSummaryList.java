@@ -1,6 +1,9 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -10,9 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,6 +70,7 @@ public class FragmentSummaryList extends Fragment {
             data.setDate_time(date_time);
 
             new insertDataAsyncTask().execute(data);
+            mainAdapter.notifyDataSetChanged();
         }
     }
 
@@ -81,7 +89,13 @@ public class FragmentSummaryList extends Fragment {
 
         share = v.findViewById(R.id.share);
         share.setOnClickListener(f2 -> {
-            shareButton();
+            if(ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                requestStoragePermission();
+            else
+                shareButton();
         });
 
         recyclerView = v.findViewById(R.id.recycler_view2);
@@ -91,6 +105,48 @@ public class FragmentSummaryList extends Fragment {
         recyclerView.setAdapter(mainAdapter);
 
         return v;
+    }
+
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed because this app need to store your screen capture to /Download folder and read your screen captured image to share it")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+                                            Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    }, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getActivity(), "Permission GRANTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void shareButton() {
@@ -136,7 +192,6 @@ public class FragmentSummaryList extends Fragment {
             database.MainDao().insert(summaryData[0]);
             dataList.clear();
             dataList.addAll(database.MainDao().getAll());
-            mainAdapter.notifyDataSetChanged();
             return null;
         }
     }
