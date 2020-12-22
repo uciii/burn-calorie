@@ -1,11 +1,13 @@
 package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -70,7 +72,9 @@ public class FragmentSummaryList extends Fragment {
             data.setCalorie((int) calorie);
             data.setDate_time(date_time);
 
-            new insertDataAsyncTask().execute(data);
+            database.MainDao().insert(data);
+            dataList.clear();
+            dataList.addAll(database.MainDao().getAll());
             mainAdapter.notifyDataSetChanged();
         }
     }
@@ -86,7 +90,6 @@ public class FragmentSummaryList extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_summary_list, container, false);
-
         home = v.findViewById(R.id.home);
         home.setOnClickListener(f -> {
             getParentFragmentManager().beginTransaction()
@@ -102,8 +105,12 @@ public class FragmentSummaryList extends Fragment {
                     ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 requestStoragePermission();
-            else
-                shareButton();
+            else{
+                if(isNetworkConnected()) shareButton();
+                else{
+                    Toast.makeText(getActivity(), "Connect to internet for Sharing!", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         recyclerView = v.findViewById(R.id.recycler_view2);
@@ -113,6 +120,13 @@ public class FragmentSummaryList extends Fragment {
         recyclerView.setAdapter(mainAdapter);
 
         return v;
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void requestStoragePermission() {
@@ -193,16 +207,6 @@ public class FragmentSummaryList extends Fragment {
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         shareIntent.setType("image/*");
         startActivity(Intent.createChooser(shareIntent, "Share..."));
-    }
-
-    private class insertDataAsyncTask extends AsyncTask<SummaryData, Void, Void> {
-        @Override
-        protected Void doInBackground(SummaryData... summaryData) {
-            database.MainDao().insert(summaryData[0]);
-            dataList.clear();
-            dataList.addAll(database.MainDao().getAll());
-            return null;
-        }
     }
 
 }
