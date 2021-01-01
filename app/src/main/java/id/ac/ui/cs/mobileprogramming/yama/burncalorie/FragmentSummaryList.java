@@ -100,17 +100,7 @@ public class FragmentSummaryList extends Fragment {
 
         share = v.findViewById(R.id.share);
         share.setOnClickListener(f2 -> {
-            if(ContextCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                requestStoragePermission();
-            else{
-                if(isNetworkConnected()) shareButton();
-                else{
-                    Toast.makeText(getActivity(), "Connect to internet for Sharing!", Toast.LENGTH_SHORT).show();
-                }
-            }
+            cekPermission();
         });
 
         recyclerView = v.findViewById(R.id.recycler_view2);
@@ -120,6 +110,20 @@ public class FragmentSummaryList extends Fragment {
         recyclerView.setAdapter(mainAdapter);
 
         return v;
+    }
+
+    private void cekPermission(){
+        if(ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            requestStoragePermission();
+        else{
+            if(isNetworkConnected()) shareButton();
+            else{
+                Toast.makeText(getActivity(), "Connect to internet for Sharing!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private boolean isNetworkConnected() {
@@ -141,8 +145,7 @@ public class FragmentSummaryList extends Fragment {
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(getActivity(),
-                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+                            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
                                             Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1);
                         }
                     })
@@ -154,8 +157,7 @@ public class FragmentSummaryList extends Fragment {
                     })
                     .create().show();
         } else {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     }, 1);
         }
@@ -166,6 +168,7 @@ public class FragmentSummaryList extends Fragment {
         if (requestCode == 1)  {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getActivity(), "Permission GRANTED", Toast.LENGTH_SHORT).show();
+                cekPermission();
             } else {
                 Toast.makeText(getActivity(), "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
