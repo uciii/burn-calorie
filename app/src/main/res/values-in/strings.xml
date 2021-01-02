@@ -65,5 +65,5 @@
     <string name="permission">Izin dibutuhkan</string>
     <string name="permissionDetail">Izin ini dibutuhkan karena aplikasi ini perlu menyimpan gambar layat di dalam
         folder /Download dan mengambilnya untuk bisa dibagikan</string>
-
+    <string name="bored">bosen?</string>
 </resources>

@@ -60,4 +60,5 @@
     <string name="permission">Permission needed</string>
     <string name="permissionDetail">This permission is needed because this app need to store your
         screen capture to /Download folder and read your screen captured image to share it</string>
+    <string name="bored">bored?</string>
 </resources>

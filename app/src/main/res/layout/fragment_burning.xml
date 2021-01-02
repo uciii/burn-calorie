@@ -115,6 +115,16 @@
                 android:text="@string/calculate"
                 android:textColor="@color/primaryWhite" />
 
+            <Button
+                android:id="@+id/opengl"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/brown"
+                android:paddingHorizontal="@dimen/smallPadding"
+                android:text="@string/bored"
+                android:textColor="@color/primaryWhite" />
+
         </LinearLayout>
 
     </LinearLayout>

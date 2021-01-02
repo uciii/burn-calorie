@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.yama.burncalorie;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,8 @@ public class FragmentBurning extends Fragment {
     Timer timer;
     TimerTask timerTask;
 
-    Button start, pause, reset, calc;
+    Button start, pause, reset, calc, bored;
+    private GLSurfaceView glView;
     ImageView back;
     TextView title, time;
     View v;
@@ -153,6 +155,11 @@ public class FragmentBurning extends Fragment {
                     .commit();
         });
 
+        bored = v.findViewById(R.id.opengl);
+        bored.setOnClickListener(f7 -> {
+            glView = new MyGLSurfaceView(getActivity());
+            getActivity().setContentView(glView);
+        });
         return v;
     }
 
